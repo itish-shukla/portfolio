@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #121214;
+  --color-panel: #1b1b1e;
+  --color-line: #2b2b30;
+  --color-paper: #f0efe9;
+  --color-fog: #8f8f96;
+  --color-ember: #ff4d3d;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+}
+
+html {
+  background: var(--color-void);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) var(--color-void);
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-paper);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-ember);
+  color: var(--color-void);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 8px;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Custom cursor takes over on precise pointers */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Film grain overlay */
+.grain {
+  position: fixed;
+  inset: -100px;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.9s steps(6) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  16% { transform: translate(-60px, 40px); }
+  33% { transform: translate(40px, -50px); }
+  50% { transform: translate(-30px, -60px); }
+  66% { transform: translate(60px, 30px); }
+  83% { transform: translate(-40px, 60px); }
+}
+
+/* Infinite marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee var(--marquee-speed, 30s) linear infinite;
+}
+.marquee-track.reverse {
+  animation-direction: reverse;
+}
+.marquee-group:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Outlined display text */
+.text-outline {
+  -webkit-text-stroke: 2px rgb(240 239 233 / 0.75);
+  color: transparent;
+}
+
+/* Interactive hero letters */
+.hero-char {
+  transition: color 0.3s ease;
+}
+.hero-char:hover {
+  color: var(--color-ember);
+}
+.hero-char-outline {
+  -webkit-text-stroke: 2px rgb(240 239 233 / 0.75);
+  color: transparent;
+  transition: color 0.25s ease, -webkit-text-stroke-color 0.25s ease;
+}
+.hero-char-outline:hover {
+  color: var(--color-ember);
+  -webkit-text-stroke-color: transparent;
+}
+
+/* Underline sweep for nav / footer links */
+.link-sweep {
+  position: relative;
+}
+.link-sweep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.link-sweep:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
