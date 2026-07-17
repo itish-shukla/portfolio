@@ -19,7 +19,7 @@ export default function About() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <motion.div
             ref={photoRef}
-            className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-panel"
+            className="relative aspect-4/5 overflow-hidden rounded-2xl bg-panel"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.25 }}
@@ -35,8 +35,7 @@ export default function About() {
               <motion.img
                 src="/itish.jpg"
                 alt="Itish Raj Shukla"
-                className="h-full w-full scale-115 object-cover grayscale transition-[filter] duration-700 hover:grayscale-0"
-                style={{ y: parallax }}
+                className="h-full w-full scale-120 object-cover object-[43%_center] grayscale transition-[filter] duration-700 hover:grayscale-0"
               />
             </motion.div>
           </motion.div>
