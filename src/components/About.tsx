@@ -1,15 +1,13 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'motion/react'
-import SectionHeading from './SectionHeading'
-import Counter from './Counter'
-import { Words, FadeUp } from './SplitText'
-import { EASE } from '../lib/motion'
-import { STATS } from '../lib/data'
+import { useRef } from "react";
+import { motion } from "motion/react";
+import SectionHeading from "./SectionHeading";
+import Counter from "./Counter";
+import { Words, FadeUp } from "./SplitText";
+import { EASE } from "../lib/motion";
+import { STATS } from "../lib/data";
 
 export default function About() {
-  const photoRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: photoRef, offset: ['start end', 'end start'] })
-  const parallax = useTransform(scrollYProgress, [0, 1], [-40, 40])
+  const photoRef = useRef<HTMLDivElement>(null);
 
   return (
     <section id="about" className="px-6 py-28 md:px-10 md:py-40">
@@ -28,8 +26,11 @@ export default function About() {
             <motion.div
               className="absolute inset-0"
               variants={{
-                hidden: { clipPath: 'inset(100% 0% 0% 0%)' },
-                show: { clipPath: 'inset(0% 0% 0% 0%)', transition: { duration: 1.2, ease: EASE } },
+                hidden: { clipPath: "inset(100% 0% 0% 0%)" },
+                show: {
+                  clipPath: "inset(0% 0% 0% 0%)",
+                  transition: { duration: 1.2, ease: EASE },
+                },
               }}
             >
               <motion.img
@@ -39,7 +40,11 @@ export default function About() {
               />
             </motion.div>
           </motion.div>
-          <FadeUp delay={0.3} y={16} className="mt-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-fog">
+          <FadeUp
+            delay={0.3}
+            y={16}
+            className="mt-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-fog"
+          >
             <span>Itish Raj Shukla</span>
             <span className="flex items-center gap-2">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-ember" />
@@ -64,17 +69,23 @@ export default function About() {
               <FadeUp
                 key={stat.label}
                 delay={i * 0.08}
-                className={`border-b border-line py-8 sm:px-6 ${i % 2 === 0 ? 'sm:border-r sm:pl-0' : ''}`}
+                className={`border-b border-line py-8 sm:px-6 ${i % 2 === 0 ? "sm:border-r sm:pl-0" : ""}`}
               >
                 <div className="text-5xl font-bold text-paper md:text-6xl">
-                  <Counter to={stat.value} decimals={stat.decimals ?? 0} suffix={stat.suffix} />
+                  <Counter
+                    to={stat.value}
+                    decimals={stat.decimals ?? 0}
+                    suffix={stat.suffix}
+                  />
                 </div>
-                <p className="mt-3 max-w-[26ch] text-sm leading-relaxed text-fog">{stat.label}</p>
+                <p className="mt-3 max-w-[26ch] text-sm leading-relaxed text-fog">
+                  {stat.label}
+                </p>
               </FadeUp>
             ))}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
