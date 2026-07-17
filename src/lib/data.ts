@@ -20,7 +20,7 @@ export const MARQUEE_CTA = ['Got an idea?', "Let's build it", 'Say hello']
 export const STATS = [
   { value: 37, suffix: '%', label: 'Smaller codebase after leading an Angular → React migration' },
   { value: 1.8, suffix: 's', decimals: 1, label: 'Faster average page loads across the app' },
-  { value: 329, suffix: 'K', label: 'Lines of legacy code retired in 8 months' },
+  { value: 428, suffix: 'K', label: 'Lines of legacy code retired in 8 months' },
   { value: 99.7, suffix: '%', decimals: 1, label: 'Accuracy of my Siamese-network face matcher' },
 ]
 
